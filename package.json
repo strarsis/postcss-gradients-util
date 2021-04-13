@@ -1,6 +1,6 @@
 {
-  "name": "postcss-blurry-gradient-workaround",
-  "version": "1.0.3",
+  "name": "postcss-gradients-util",
+  "version": "1.0.0",
   "description": "PostCSS library that collects gradients and gradient values from PostCSS postcss-values-parser AST.",
   "keywords": [
     "postcss",
@@ -35,7 +35,7 @@
   },
   "author": "strarsis <strarsis@gmail.com>",
   "license": "MIT",
-  "repository": "strarsis/postcss-blurry-gradient-workaround",
+  "repository": "strarsis/postcss-gradients-util",
   "engines": {
     "node": ">=10.0.0"
   },
