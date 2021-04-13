@@ -25,7 +25,6 @@ function getGradientInfo(funcNode) {
             if(isSideOrCornerNode(node)) {
                 gradient.config.sideOrCorner.push(node);
             } else if(isAngleNode(node)) {
-                console.log(node);
                 gradient.config.angle.push(node);
             }
         }
@@ -64,17 +63,23 @@ function getGradientInfo(funcNode) {
 function createEmptyGradient() {
     return {
         config: {
-            sideOrCorner: [],
-            angle:        [],
+            sideOrCorner: [], // linear gradient
+
+            angle:        [], // linear gradient, conic gradient
+            position:     [], // radial gradient, conic gradient
+
+            endingShape:  [], // radial gradient
+            size:         [], // radial gradient
+
         },
-        colorStops: [],
+        colorStops: [], // linear gradient, conic gradient, radial gradient (linear-color-stop|color-hint)
     };
 }
 
 function createEmptyStop() {
     return {
         value: [], // color
-        pos:   [], // position
+        pos:   [], // position (for linear-color-stop, otherwise it is a color-hint)
     };
 }
 
@@ -91,8 +96,10 @@ function isSideOrCornerNode(node) {
     return (node.type === 'word' && !node.isColor);
 }
 
+const angularUnits = [ 'deg', 'grad', 'rad', 'turn', ];
+
 function isAngleNode(node) {
-    return (node.type === 'numeric' &&  node.unit === ('deg' | 'grad' | 'rad', 'turn' ));
+    return (node.type === 'numeric' &&  angularUnits.includes(node.unit));
 }
 
 

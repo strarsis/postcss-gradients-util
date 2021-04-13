@@ -1,3 +1,4 @@
+
 const valuesParse = require('postcss-values-parser'),
       parseValues = valuesParse.parse;
 const gradientTools    = require('./'),
@@ -25,6 +26,11 @@ async function run (input, output) {
 }
 
 
+
+
+// Linear gradients
+//   values
+
 it('collects gradient angle and stops of a gradient value', async () => {
   await runValues(
 
@@ -38,11 +44,14 @@ it('collects gradient angle and stops of a gradient value', async () => {
 
 {
   "config": {
+    "angle": [],
+    "endingShape": [],
+    "position": [],
     "sideOrCorner": [
       "to",
       "right"
     ],
-    "angle": [],
+    "size": [],
   },
   "colorStops": [
     {
@@ -97,11 +106,14 @@ red          90%
 
 {
   "config": {
+    "angle": [],
+    "endingShape": [],
+    "position": [],
     "sideOrCorner": [
       "to",
       "left"
     ],
-    "angle": [],
+    "size": [],
   },
   "colorStops": [
     {
@@ -155,8 +167,11 @@ it('collects gradient stops of a gradient value without a sideOrCorner component
 
 {
   "config": {
-    "sideOrCorner": [],
     "angle": [],
+    "endingShape": [],
+    "position": [],
+    "sideOrCorner": [],
+    "size": [],
   },
   "colorStops": [
     {
@@ -207,8 +222,11 @@ it('collects gradient stops of a very simple gradient example without a sideOrCo
 
 {
   "config": {
-    "sideOrCorner": [],
     "angle": [],
+    "endingShape": [],
+    "position": [],
+    "sideOrCorner": [],
+    "size": [],
   },
   "colorStops": [
     {
@@ -240,10 +258,13 @@ it('collects angle and gradient stops of a very simple gradient example with ang
 
 {
   "config": {
-    "sideOrCorner": [],
     "angle": [
-      "123deg"
+      "123deg",
     ],
+    "endingShape": [],
+    "position": [],
+    "sideOrCorner": [],
+    "size": [],
   },
   "colorStops": [
     {
@@ -266,7 +287,91 @@ it('collects angle and gradient stops of a very simple gradient example with ang
 
 
 
-it('collects angle and gradient stops of a very radial gradient example with angle', async () => {
+
+// Radial gradients
+//   values
+
+it('collects angle and gradient stops of a very simple radial gradient example with only gradient stops', async () => {
+  await runValues(
+
+`
+#e66465, #9198e5
+`,
+
+{
+  "config": {
+    "angle": [],
+    "endingShape": [],
+    "position": [],
+    "sideOrCorner": [],
+    "size": [],
+  },
+  "colorStops": [
+    {
+      "value": [
+        "#e66465",
+      ],
+      "pos": []
+    },
+    {
+      "value": [
+        "#9198e5",
+      ],
+      "pos": []
+    }
+  ]
+},
+
+)
+})
+
+it('collects angle and gradient stops of a very simple radial gradient example with only gradient stops with some positions (color-hints)', async () => {
+  await runValues(
+
+`
+yellow 10%, red 50%, blue 80%
+`,
+
+{
+  "config": {
+    "angle": [],
+    "endingShape": [],
+    "position": [],
+    "sideOrCorner": [],
+    "size": [],
+  },
+  "colorStops": [
+    {
+      "value": [
+        "yellow",
+      ],
+      "pos": [
+        "10%"
+      ]
+    },
+    {
+      "value": [
+        "red",
+      ],
+      "pos": [
+        "50%"
+      ]
+    },
+    {
+      "value": [
+        "blue",
+      ],
+      "pos": [
+        "80%"
+      ]
+    }
+  ]
+},
+
+)
+})
+
+it('collects angle and gradient stops of a very simple radial gradient example with position and ending-shape (circle at)', async () => {
   await runValues(
 
 `
@@ -275,8 +380,15 @@ it('collects angle and gradient stops of a very radial gradient example with ang
 
 {
   "config": {
-    "sideOrCorner": [],
     "angle": [],
+    "endingShape": [
+      "circle",
+    ],
+    "position": [],
+    "sideOrCorner": [],
+    "size": [
+      "at 100%",
+    ],
   },
   "colorStops": [
     {
@@ -314,3 +426,68 @@ it('collects angle and gradient stops of a very radial gradient example with ang
 
 )
 })
+
+it('collects angle and gradient stops of a very simple radial gradient example with only an ending shape', async () => {
+  await runValues(
+
+`
+  circle at 100%, #333, #333 50%, #eee 75%, #333 75%
+`,
+
+{
+  "config": {
+    "angle": [],
+    "endingShape": [
+      "circle",
+    ],
+    "position": [],
+    "sideOrCorner": [],
+    "size": [
+      "at 100%",
+    ],
+  },
+  "colorStops": [
+    {
+      "value": [
+        "#333",
+      ],
+      "pos": []
+    },
+    {
+      "value": [
+        "#333",
+      ],
+      "pos": [
+        "50%"
+      ]
+    },
+    {
+      "value": [
+        "#eee",
+      ],
+      "pos": [
+        "75%"
+      ]
+    },
+    {
+      "value": [
+        "#333",
+      ],
+      "pos": [
+        "75%"
+      ]
+    },
+  ]
+},
+
+)
+})
+
+
+
+
+// Conic gradients
+//   values
+
+
+
