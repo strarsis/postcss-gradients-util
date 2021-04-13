@@ -1,13 +1,34 @@
 {
   "name": "postcss-blurry-gradient-workaround",
   "version": "1.0.3",
-  "description": "PostCSS plugin that splits gradients with too many explicit end-stops into separate gradients as workaround for blurry gradients in some browsers.",
+  "description": "PostCSS library that collects gradients and gradient values from PostCSS postcss-values-parser AST.",
   "keywords": [
     "postcss",
     "css",
-    "postcss-plugin",
+    "postcss",
+    "library",
+    "util",
+    "utils",
+    "utility",
+    "tool",
+    "tools",
+    "helper",
+    "supporting",
+    "ast",
+    "collect",
     "gradient",
-    "gradients"
+    "gradients",
+    "linear-gradient",
+    "radial-gradient",
+    "conic-gradient",
+    "linear",
+    "radial",
+    "conic",
+    "value",
+    "stop",
+    "stops",
+    "color-stop",
+    "color-stops"
   ],
   "scripts": {
     "test": "./node_modules/jest-cli/bin/jest.js --coverage && ./node_modules/eslint-ci/bin.js ."
